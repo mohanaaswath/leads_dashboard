@@ -242,13 +242,16 @@ The repository includes a GitHub Actions workflow at [.github/workflows/deploy-p
 1. Open the repository on GitHub.
 2. Go to **Settings** > **Pages**.
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
-4. Push to the `main` branch to trigger the deployment workflow automatically.
+4. Go to **Settings** > **Secrets and variables** > **Actions** > **Variables**.
+5. Add a variable named `VITE_API_URL` with your deployed backend API URL, for example `https://your-backend.example.com/api`.
+6. Push to the `main` branch to trigger the deployment workflow automatically.
 
 ### Notes
 
 - The frontend is configured with the GitHub Pages base path `/leads_dashboard/` in [frontend/vite.config.ts](frontend/vite.config.ts).
 - If you rename the repository, update the `base` value in `frontend/vite.config.ts` to match the new repo path.
 - You can also run the deployment manually from the **Actions** tab using the `workflow_dispatch` trigger.
+- The deployed frontend now reads the API URL from the `VITE_API_URL` Actions variable instead of falling back to `localhost`.
 
 ## 📚 API Documentation
 

@@ -1,7 +1,15 @@
 import axios from "axios";
 
+const apiBaseUrl = import.meta.env.VITE_API_URL;
+
+if (!apiBaseUrl) {
+  throw new Error(
+    "VITE_API_URL is not set. Configure the deployed API URL in your environment or GitHub Actions variables.",
+  );
+}
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL ?? "http://localhost:5000/api",
+  baseURL: apiBaseUrl,
   withCredentials: true,
 });
 
