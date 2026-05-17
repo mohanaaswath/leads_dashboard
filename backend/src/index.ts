@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes";
 import leadsRoutes from "./routes/leads.routes";
+import { localStore } from "./services/localStore";
 
 dotenv.config();
 
@@ -30,10 +31,27 @@ const corsOptions: cors.CorsOptions = {
   credentials: true,
 };
 
+corsOptions.allowedHeaders = ["Content-Type", "Authorization"];
+corsOptions.methods = [
+  "GET",
+  "HEAD",
+  "PUT",
+  "PATCH",
+  "POST",
+  "DELETE",
+  "OPTIONS",
+];
+
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  // quick-response for preflight to reduce latency
+  if (req.method === "OPTIONS") return res.sendStatus(204);
+  next();
+});
 
 app.use("/api/auth", authRoutes);
 app.use("/api/leads", leadsRoutes);
@@ -53,6 +71,14 @@ app.use(
   },
 );
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+(async () => {
+  try {
+    await localStore.init();
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+  } catch (e) {
+    console.error("Failed to initialize local store:", e);
+    process.exit(1);
+  }
+})();

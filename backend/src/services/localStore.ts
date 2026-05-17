@@ -35,9 +35,20 @@ export interface StoredLead extends Lead {
 const createId = () =>
   `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
 
+// In-memory cache to avoid repeated file I/O on auth-critical paths
+let usersCache: StoredUser[] | null = null;
+
 export const localStore = {
+  // Initialize cache at startup
+  async init(): Promise<void> {
+    usersCache = await readJsonFile<StoredUser[]>(usersFile, []);
+  },
+
   async getUsers(): Promise<StoredUser[]> {
-    return readJsonFile<StoredUser[]>(usersFile, []);
+    if (usersCache === null) {
+      usersCache = await readJsonFile<StoredUser[]>(usersFile, []);
+    }
+    return usersCache;
   },
 
   async findUserByEmail(email: string): Promise<StoredUser | undefined> {
@@ -51,6 +62,7 @@ export const localStore = {
     const users = await this.getUsers();
     const storedUser: StoredUser = { ...user, id: createId() };
     users.push(storedUser);
+    usersCache = users;
     await writeJsonFile(usersFile, users);
     return storedUser;
   },
