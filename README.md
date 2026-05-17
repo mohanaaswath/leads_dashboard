@@ -233,6 +233,23 @@ cd backend
 npm start
 ```
 
+## 🌐 GitHub Pages Deployment
+
+The repository includes a GitHub Actions workflow at [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) that deploys the frontend to GitHub Pages.
+
+### Repository Setup in GitHub
+
+1. Open the repository on GitHub.
+2. Go to **Settings** > **Pages**.
+3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+4. Push to the `main` branch to trigger the deployment workflow automatically.
+
+### Notes
+
+- The frontend is configured with the GitHub Pages base path `/leads_dashboard/` in [frontend/vite.config.ts](frontend/vite.config.ts).
+- If you rename the repository, update the `base` value in `frontend/vite.config.ts` to match the new repo path.
+- You can also run the deployment manually from the **Actions** tab using the `workflow_dispatch` trigger.
+
 ## 📚 API Documentation
 
 ### Authentication Endpoints
@@ -352,15 +369,12 @@ This project is licensed under the MIT License.
 
 **Last Updated**: May 2026
 
-
-
-
-
 # Smart Leads Dashboard
 
 A full-stack lead management application built with the MERN stack + Firebase.
 
 ## Features
+
 - JWT Authentication with bcrypt password hashing
 - Role-Based Access Control (Admin / Sales)
 - Full Lead CRUD (Create, Read, Update, Delete)
@@ -369,21 +383,24 @@ A full-stack lead management application built with the MERN stack + Firebase.
 - CSV Export | Dark Mode | Responsive UI
 
 ## Tech Stack
+
 **Frontend:** React, TypeScript, TailwindCSS, React Router, Axios  
 **Backend:** Node.js, Express, TypeScript, Firebase Firestore, JWT, bcrypt
 
 ## Getting Started
+
 1. Clone the repo
 2. Set up Firebase and fill in `.env` (see `.env.example`)
 3. `cd backend && npm install && npm run dev`
 4. `cd frontend && npm install && npm run dev`
 
 ## API Endpoints
-| Method | Endpoint | Access |
-|--------|----------|--------|
-| POST | /api/auth/register | Public |
-| POST | /api/auth/login | Public |
-| GET | /api/leads | Auth |
-| POST | /api/leads | Auth |
-| PUT | /api/leads/:id | Auth |
-| DELETE | /api/leads/:id | Admin only |
+
+| Method | Endpoint           | Access     |
+| ------ | ------------------ | ---------- |
+| POST   | /api/auth/register | Public     |
+| POST   | /api/auth/login    | Public     |
+| GET    | /api/leads         | Auth       |
+| POST   | /api/leads         | Auth       |
+| PUT    | /api/leads/:id     | Auth       |
+| DELETE | /api/leads/:id     | Admin only |
