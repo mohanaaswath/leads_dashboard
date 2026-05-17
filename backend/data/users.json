@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Mohan",
+    "email": "innocentmohan2005@gmail.com",
+    "password": "$2a$10$3yPbQdJBFtcG0YVC7kTxoOA0kQQWeskk5wxVHDjhT1MYcDN31MZ7W",
+    "role": "admin",
+    "id": "mp8ls740-rso5mwxr"
+  },
+  {
+    "name": "Test User",
+    "email": "test@example.com",
+    "password": "$2a$10$CkN6mjSXi/aNHE04Gydst.1pgze8uYxRDdYYhBr7DcRavkDeyOKOm",
+    "role": "sales",
+    "id": "mp8lwk4g-7ovxaonx"
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "mohan",
+    "email": "innocentmohan22122005@gmail.com",
+    "status": "Contacted",
+    "source": "Website",
+    "createdAt": "2026-05-16T17:13:39.855Z",
+    "userId": "mp8ls740-rso5mwxr",
+    "id": "mp8lv2ts-rmz7wlsh"
+  },
+  {
+    "name": "nithin",
+    "email": "nithin@gmail.com",
+    "status": "Lost",
+    "source": "Instagram",
+    "createdAt": "2026-05-16T17:37:05.454Z",
+    "userId": "mp8ls740-rso5mwxr",
+    "id": "mp8mp7e7-b88emlt9"
+  }
+]

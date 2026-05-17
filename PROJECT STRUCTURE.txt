@@ -1,0 +1,60 @@
+smart-leads-dashboard/
+├── backend/
+│   ├── src/
+│   │   ├── config/
+│   │   │   └── firebase.ts
+│   │   ├── middleware/
+│   │   │   ├── auth.ts
+│   │   │   └── rbac.ts
+│   │   ├── routes/
+│   │   │   ├── auth.routes.ts
+│   │   │   └── leads.routes.ts
+│   │   ├── controllers/
+│   │   │   ├── auth.controller.ts
+│   │   │   └── leads.controller.ts
+│   │   ├── types/
+│   │   │   └── index.ts
+│   │   └── index.ts
+│   ├── package.json
+│   └── tsconfig.json
+│
+└── frontend/
+    ├── src/
+    │   ├── api/
+    │   │   └── axios.ts
+    │   ├── components/
+    │   │   ├── LeadTable.tsx
+    │   │   ├── LeadForm.tsx
+    │   │   ├── Filters.tsx
+    │   │   ├── Pagination.tsx
+    │   │   ├── Navbar.tsx
+    │   │   └── ProtectedRoute.tsx
+    │   ├── context/
+    │   │   └── AuthContext.tsx
+    │   ├── hooks/
+    │   │   └── useDebounce.ts
+    │   ├── pages/
+    │   │   ├── Login.tsx
+    │   │   ├── Register.tsx
+    │   │   └── Dashboard.tsx
+    │   ├── types/
+    │   │   └── index.ts
+    │   ├── utils/
+    │   │   └── csvExport.ts
+    │   ├── App.tsx
+    │   └── main.tsx
+    ├── package.json
+    └── tsconfig.json
+
+
+    smart-leads-dashboard/
+├── backend/   ← Node + Express + TypeScript + Firebase + JWT
+└── frontend/  ← React + TypeScript + TailwindCSS + React Router
+
+
+Setup Firebase:
+
+Go to console.firebase.google.com
+Create a project → Enable Firestore (Native mode)
+Go to Project Settings → Service Accounts → Generate new private key
+Copy projectId, privateKey, clientEmail into backend/.env
