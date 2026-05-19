@@ -21,6 +21,8 @@ if (!apiBaseUrl && !import.meta.env.DEV) {
   );
 }
 
+export const apiHealthBaseUrl = productionApiBaseUrl.replace(/\/api\/?$/, "");
+
 const api = axios.create({
   baseURL: import.meta.env.DEV ? resolvedApiBaseUrl : productionApiBaseUrl,
   withCredentials: true,

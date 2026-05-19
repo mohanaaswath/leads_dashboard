@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../api/axios";
+import api, { apiHealthBaseUrl } from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import { User } from "../types";
 
@@ -10,6 +10,16 @@ export const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    void fetch(`${apiHealthBaseUrl}/health`, {
+      method: "GET",
+      mode: "cors",
+      credentials: "omit",
+    }).catch(() => {
+      // Ignore prewarm failures; login still uses the normal API call.
+    });
+  }, []);
 
   const handleSubmit = async () => {
     setError("");
