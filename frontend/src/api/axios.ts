@@ -1,13 +1,8 @@
 import axios from "axios";
 
+const defaultProductionApiUrl = "https://leads-dashboard-vk47.onrender.com/api";
 const apiBaseUrl = import.meta.env.VITE_API_URL?.trim();
 const localApiBaseUrl = "http://localhost:5000/api";
-
-if (!apiBaseUrl && !import.meta.env.DEV) {
-  throw new Error(
-    "VITE_API_URL is required in production. Set it to your Cloud Run backend URL ending in /api.",
-  );
-}
 
 if (!apiBaseUrl && import.meta.env.DEV) {
   console.warn(
@@ -15,7 +10,15 @@ if (!apiBaseUrl && import.meta.env.DEV) {
   );
 }
 
-const resolvedApiBaseUrl = apiBaseUrl ?? localApiBaseUrl;
+if (!apiBaseUrl && !import.meta.env.DEV) {
+  console.warn(
+    `VITE_API_URL is not set. Falling back to ${defaultProductionApiUrl} in production.`,
+  );
+}
+
+const resolvedApiBaseUrl =
+  apiBaseUrl ??
+  (import.meta.env.DEV ? localApiBaseUrl : defaultProductionApiUrl);
 
 export const apiHealthBaseUrl = resolvedApiBaseUrl.replace(/\/api\/?$/, "");
 

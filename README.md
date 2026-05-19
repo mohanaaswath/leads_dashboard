@@ -270,14 +270,14 @@ The repository includes a GitHub Actions workflow at [.github/workflows/deploy-p
 
 If you prefer to keep the Cloud Run URL in a separate variable, you can set `CLOUD_RUN_API_URL` instead and leave `VITE_API_URL` unset.
 
-The frontend build now fails fast if no production API URL is provided, which prevents GitHub Pages from shipping a placeholder backend address.
+The frontend build now warns and falls back to the previously deployed production API URL if no variable is provided, so the site still loads instead of crashing.
 
 ### Notes
 
 - The frontend is configured with the GitHub Pages base path `/leads_dashboard/` in [frontend/vite.config.ts](frontend/vite.config.ts).
 - If you rename the repository, update the `base` value in `frontend/vite.config.ts` to match the new repo path.
 - You can also run the deployment manually from the **Actions** tab using the `workflow_dispatch` trigger.
-- The deployed frontend reads the API URL from the Actions variable and should point at the Cloud Run service, not the old Render host.
+- The deployed frontend reads the API URL from the Actions variable when available, and otherwise falls back to the bundled production endpoint.
 
 ## 🚢 Cloud Run Backend Deployment
 
