@@ -1,0 +1,14 @@
+{
+  "Service 3": {
+    "serviceType": "Service 3",
+    "currentIndex": 0
+  },
+  "Service 2": {
+    "serviceType": "Service 2",
+    "currentIndex": 1
+  },
+  "Service 1": {
+    "serviceType": "Service 1",
+    "currentIndex": 0
+  }
+}

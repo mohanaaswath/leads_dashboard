@@ -1,0 +1,66 @@
+{
+  "provider-1": {
+    "id": "provider-1",
+    "name": "Provider 1",
+    "monthlyQuota": 10,
+    "usedQuota": 3,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-2": {
+    "id": "provider-2",
+    "name": "Provider 2",
+    "monthlyQuota": 10,
+    "usedQuota": 2,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-4": {
+    "id": "provider-4",
+    "name": "Provider 4",
+    "monthlyQuota": 10,
+    "usedQuota": 2,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-3": {
+    "id": "provider-3",
+    "name": "Provider 3",
+    "monthlyQuota": 10,
+    "usedQuota": 2,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-5": {
+    "id": "provider-5",
+    "name": "Provider 5",
+    "monthlyQuota": 10,
+    "usedQuota": 2,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-6": {
+    "id": "provider-6",
+    "name": "Provider 6",
+    "monthlyQuota": 10,
+    "usedQuota": 2,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-7": {
+    "id": "provider-7",
+    "name": "Provider 7",
+    "monthlyQuota": 10,
+    "usedQuota": 1,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "provider-8": {
+    "id": "provider-8",
+    "name": "Provider 8",
+    "monthlyQuota": 10,
+    "usedQuota": 1,
+    "active": true,
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  }
+}

@@ -12,5 +12,12 @@
     "password": "$2a$10$CkN6mjSXi/aNHE04Gydst.1pgze8uYxRDdYYhBr7DcRavkDeyOKOm",
     "role": "sales",
     "id": "mp8lwk4g-7ovxaonx"
+  },
+  {
+    "name": "Demo User",
+    "email": "demo+1@example.com",
+    "password": "$2a$10$7164wyo0FXabpteeKuiKXu2SwqBw1TVEhiLobNV2oDtGhc/.3Njcm",
+    "role": "sales",
+    "id": "mpchamu0-258dqoua"
   }
 ]

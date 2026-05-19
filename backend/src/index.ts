@@ -3,7 +3,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.routes";
 import leadsRoutes from "./routes/leads.routes";
+import dashboardRoutes from "./routes/dashboard.routes";
+import webhooksRoutes from "./routes/webhooks.routes";
 import { localStore } from "./services/localStore";
+import { seedInitialData } from "./services/allocation.service";
 
 dotenv.config();
 
@@ -55,6 +58,8 @@ app.use((req, res, next) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/leads", leadsRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/webhooks", webhooksRoutes);
 
 app.get("/health", (_req, res) => res.json({ status: "ok" }));
 
@@ -74,6 +79,7 @@ app.use(
 (async () => {
   try {
     await localStore.init();
+    await seedInitialData();
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
     });

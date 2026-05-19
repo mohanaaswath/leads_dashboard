@@ -3,7 +3,9 @@ import { AuthProvider } from "./context/AuthContext";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { Dashboard } from "./pages/Dashboard";
+import { RequestService } from "./pages/RequestService";
+import { ProviderDashboard } from "./pages/ProviderDashboard";
+import { TestTools } from "./pages/TestTools";
 
 function App() {
   return (
@@ -12,17 +14,22 @@ function App() {
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
         <Routes>
-          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route
+            path="/"
+            element={<Navigate to="/request-service" replace />}
+          />
+          <Route path="/request-service" element={<RequestService />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <ProviderDashboard />
               </ProtectedRoute>
             }
           />
+          <Route path="/test-tools" element={<TestTools />} />
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
       </HashRouter>

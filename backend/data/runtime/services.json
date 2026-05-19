@@ -1,0 +1,17 @@
+{
+  "service-3": {
+    "id": "service-3",
+    "name": "Service 3",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "service-2": {
+    "id": "service-2",
+    "name": "Service 2",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  },
+  "service-1": {
+    "id": "service-1",
+    "name": "Service 1",
+    "createdAt": "1970-01-01T00:00:00.000Z"
+  }
+}

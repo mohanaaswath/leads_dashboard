@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -22,6 +23,12 @@ export const Navbar = ({ darkMode, toggleDark }: NavbarProps) => {
         <span className="brand-title">Smart Leads</span>
       </div>
       <div className="user-area">
+        <Link className="button button-secondary" to="/request-service">
+          Public form
+        </Link>
+        <Link className="button button-secondary" to="/test-tools">
+          Test tools
+        </Link>
         <span className="small">
           {user?.name} • <span style={{ fontWeight: 700 }}>{user?.role}</span>
         </span>

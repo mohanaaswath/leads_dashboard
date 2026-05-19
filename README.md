@@ -26,6 +26,14 @@ A full-stack web application for managing and tracking sales leads with role-bas
 - **CSV Export**: Export lead data to CSV format
 - **Responsive Design**: Built with Tailwind CSS for mobile and desktop
 
+## Lead Allocation Extension
+
+This version adds a production-style lead intake and allocation flow on top of the existing app. The backend now stores leads, providers, assignments, allocation state, and webhook events in Firestore-backed collections. Lead creation is deterministic: the same phone number plus service type is rejected at the database layer, mandatory providers are always assigned first, and the remaining provider slots are filled by a persistent round-robin cursor.
+
+Concurrency is handled inside a Firestore transaction. The transaction reads the target lead document, the providers needed for the service, and the persisted allocation cursor, then writes the lead, assignments, quota updates, and next cursor value as one atomic unit. That prevents duplicate providers, quota overruns, and round-robin drift during simultaneous requests.
+
+Webhook idempotency uses a `webhookEvents` collection keyed by `eventId`. If the same reset webhook is received again, the transaction sees the existing event record and exits without applying quota resets a second time.
+
 ## 📁 Project Structure
 
 ```
@@ -35,15 +43,26 @@ Smart Leads Dashboard/
 │   │   ├── index.ts           # Entry point
 │   │   ├── config/
 │   │   │   └── firebase.ts    # Firebase configuration
+│   │   ├── models/
+│   │   │   └── domain.ts      # Lead, provider, assignment, and webhook models
 │   │   ├── controllers/       # Business logic
 │   │   │   ├── auth.controller.ts
-│   │   │   └── leads.controller.ts
+│   │   │   ├── dashboard.controller.ts
+│   │   │   ├── leads.controller.ts
+│   │   │   └── webhooks.controller.ts
 │   │   ├── middleware/        # Custom middleware
 │   │   │   ├── auth.ts
 │   │   │   └── rbac.ts
 │   │   ├── routes/            # API routes
 │   │   │   ├── auth.routes.ts
-│   │   │   └── leads.controller.ts
+│   │   │   ├── dashboard.routes.ts
+│   │   │   ├── leads.routes.ts
+│   │   │   └── webhooks.routes.ts
+│   │   ├── services/          # Reusable domain services
+│   │   │   ├── allocation.service.ts
+│   │   │   ├── localStore.ts
+│   │   │   └── webhook.service.ts
+│   │   ├── seed.ts            # Seed script for services and providers
 │   │   └── types/             # TypeScript type definitions
 │   ├── package.json
 │   └── tsconfig.json
@@ -68,7 +87,10 @@ Smart Leads Dashboard/
 │   │   ├── pages/             # Page components
 │   │   │   ├── Dashboard.tsx
 │   │   │   ├── Login.tsx
-│   │   │   └── Register.tsx
+│   │   │   ├── ProviderDashboard.tsx
+│   │   │   ├── Register.tsx
+│   │   │   ├── RequestService.tsx
+│   │   │   └── TestTools.tsx
 │   │   ├── types/             # TypeScript definitions
 │   │   └── utils/
 │   │       └── csvExport.tsx
@@ -263,12 +285,21 @@ The repository includes a GitHub Actions workflow at [.github/workflows/deploy-p
 
 ### Leads Endpoints
 
-- `GET /api/leads` - Get all leads
-- `GET /api/leads/:id` - Get a specific lead
-- `POST /api/leads` - Create a new lead
-- `PUT /api/leads/:id` - Update a lead
-- `DELETE /api/leads/:id` - Delete a lead
-- `GET /api/leads/export/csv` - Export leads as CSV
+- `POST /api/leads` - Create a new lead and trigger allocation
+
+### Dashboard Endpoints
+
+- `GET /api/dashboard/services` - List the seeded service types
+- `GET /api/dashboard/providers` - List all providers
+- `GET /api/dashboard/providers/:providerId` - Get provider dashboard data and assigned leads
+
+### Webhook Endpoints
+
+- `POST /api/webhooks/reset-quota` - Idempotent quota reset webhook
+
+### Seed
+
+- `npm run seed` - Seed the three services, eight providers, and default allocation state after building the backend
 
 ### Request/Response Examples
 
@@ -285,6 +316,18 @@ See `API_DOCS.md` for detailed request/response examples and authentication requ
 - TypeScript
 - Firebase Admin SDK
 - JWT Authentication
+
+### Allocation Strategy
+
+Each service has a mandatory provider set and a fair round-robin pool. The allocation cursor is stored in Firestore so it survives restarts. For each new lead, the backend locks the relevant documents in a transaction, creates the lead once, assigns the mandatory providers, then fills the remaining slots from the fair pool while skipping exhausted or inactive providers.
+
+### Concurrency Handling
+
+The transaction reads the lead uniqueness document, provider quota documents, and allocation state before writing any updates. Lead uniqueness is enforced through a deterministic lead document ID derived from phone number plus service type. Provider assignments use deterministic compound document IDs as well, so the same provider cannot be attached to the same lead twice.
+
+### Idempotency Handling
+
+Webhook reset requests write a `webhookEvents` document keyed by `eventId`. If the event already exists, the transaction exits without resetting quotas again. That makes repeated deliveries safe.
 
 **Frontend:**
 

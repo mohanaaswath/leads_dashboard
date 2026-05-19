@@ -38,3 +38,69 @@ export interface FilterState {
   sort: "newest" | "oldest";
   page: number;
 }
+
+export type ServiceType = "Service 1" | "Service 2" | "Service 3";
+
+export interface ServiceRecord {
+  id: string;
+  name: ServiceType;
+  createdAt: string;
+}
+
+export interface ProviderRecord {
+  id: string;
+  name: string;
+  monthlyQuota: number;
+  usedQuota: number;
+  active: boolean;
+  createdAt: string;
+}
+
+export interface LeadAllocationResult {
+  lead: {
+    id: string;
+    name: string;
+    phoneNumber: string;
+    city: string;
+    serviceType: ServiceType;
+    description: string;
+    createdAt: string;
+  };
+  assignedProviders: ProviderRecord[];
+}
+
+export interface ProviderDashboardLead {
+  leadId: string;
+  leadName: string;
+  phoneNumber: string;
+  city: string;
+  serviceType: ServiceType;
+  description: string;
+  assignedAt: string;
+}
+
+export interface ProviderDashboardData {
+  provider: {
+    id: string;
+    name: string;
+    remainingQuota: number;
+    usedQuota: number;
+    assignedLeadsCount: number;
+    active: boolean;
+  };
+  assignedLeads: ProviderDashboardLead[];
+}
+
+export interface ServicesResponse {
+  services: ServiceRecord[];
+}
+
+export interface ProvidersResponse {
+  providers: ProviderRecord[];
+}
+
+export interface WebhookResponse {
+  message: string;
+  processed: boolean;
+  duplicate: boolean;
+}
