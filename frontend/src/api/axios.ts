@@ -7,6 +7,8 @@ const resolvedApiBaseUrl =
   apiBaseUrl ??
   (import.meta.env.DEV ? "http://localhost:5000/api" : defaultProductionApiUrl);
 
+const productionApiBaseUrl = defaultProductionApiUrl;
+
 if (!apiBaseUrl && import.meta.env.DEV) {
   console.warn(
     "VITE_API_URL is not set. Falling back to localhost in development.",
@@ -15,12 +17,12 @@ if (!apiBaseUrl && import.meta.env.DEV) {
 
 if (!apiBaseUrl && !import.meta.env.DEV) {
   console.warn(
-    `VITE_API_URL is not set. Falling back to ${defaultProductionApiUrl} in production.`,
+    `VITE_API_URL is not set. Falling back to ${productionApiBaseUrl} in production.`,
   );
 }
 
 const api = axios.create({
-  baseURL: resolvedApiBaseUrl,
+  baseURL: import.meta.env.DEV ? resolvedApiBaseUrl : productionApiBaseUrl,
   withCredentials: true,
 });
 
