@@ -255,29 +255,26 @@ cd backend
 npm start
 ```
 
-## 🌐 GitHub Pages Deployment
+## 🌐 Firebase Hosting Deployment
 
-The repository includes a GitHub Actions workflow at [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) that deploys the frontend to GitHub Pages.
+The repository includes Firebase Hosting workflows at [.github/workflows/firebase-hosting-merge.yml](.github/workflows/firebase-hosting-merge.yml) and [.github/workflows/firebase-hosting-pull-request.yml](.github/workflows/firebase-hosting-pull-request.yml) that deploy the frontend to Firebase Hosting.
 
 ### Repository Setup in GitHub
 
 1. Open the repository on GitHub.
-2. Go to **Settings** > **Pages**.
-3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+2. Go to **Settings** > **Secrets and variables** > **Actions**.
+3. Add the `FIREBASE_SERVICE_ACCOUNT_SMART_LEADS_DASHBOARD` secret for Firebase Hosting deployment.
 4. Go to **Settings** > **Secrets and variables** > **Actions** > **Variables**.
 5. Add a variable named `VITE_API_URL` with your Cloud Run backend URL, for example `https://your-service-xyz-uc.a.run.app` or `https://your-service-xyz-uc.a.run.app/api`.
-6. Push to the `main` branch to trigger the deployment workflow automatically.
+6. Push to the `master` branch to trigger the deployment workflow automatically.
 
-If you prefer to keep the Cloud Run URL in a separate variable, you can set `CLOUD_RUN_API_URL` instead and leave `VITE_API_URL` unset.
-
-The frontend build now warns and falls back to the previously deployed production API URL if no variable is provided, so the site still loads instead of crashing.
+The frontend build expects `VITE_API_URL` in production, so set it before deploying to Firebase Hosting.
 
 ### Notes
 
-- The frontend is configured with the GitHub Pages base path `/leads_dashboard/` in [frontend/vite.config.ts](frontend/vite.config.ts).
-- If you rename the repository, update the `base` value in `frontend/vite.config.ts` to match the new repo path.
-- You can also run the deployment manually from the **Actions** tab using the `workflow_dispatch` trigger.
-- The deployed frontend normalizes the API URL to `/api` when needed, then falls back to the bundled production endpoint if no variable is provided.
+- The frontend is configured with the root base path `/` in [frontend/vite.config.ts](frontend/vite.config.ts).
+- The deployed frontend normalizes `VITE_API_URL` to `/api` when needed.
+- The Firebase Hosting workflows build the frontend from `frontend/` and deploy the generated `frontend/dist` output.
 
 ## 🚢 Cloud Run Backend Deployment
 
@@ -294,7 +291,7 @@ Before using it, configure these GitHub Actions values:
 - `CLOUD_RUN_CORS_ORIGIN`
 - `CLOUD_RUN_RUNTIME_SERVICE_ACCOUNT_EMAIL`
 
-After deployment, copy the Cloud Run service URL into `VITE_API_URL` so the GitHub Pages frontend uses the new stable backend endpoint.
+After deployment, copy the Cloud Run service URL into `VITE_API_URL` so the Firebase Hosting frontend uses the backend endpoint.
 
 The backend now uses Google application default credentials on Cloud Run, so the runtime service account needs Firestore access, but you do not need to store a Firebase private key in GitHub secrets.
 
