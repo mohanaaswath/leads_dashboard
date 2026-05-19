@@ -1,8 +1,20 @@
 import axios from "axios";
 
-const defaultProductionApiUrl = "https://leads-dashboard-vk47.onrender.com/api";
+const normalizeApiBaseUrl = (value: string) => {
+  const trimmedValue = value.trim().replace(/\/+$/, "");
+
+  if (/\/api$/i.test(trimmedValue)) {
+    return trimmedValue;
+  }
+
+  return `${trimmedValue}/api`;
+};
+
+const defaultProductionApiUrl = normalizeApiBaseUrl(
+  "https://leads-dashboard-vk47.onrender.com",
+);
 const apiBaseUrl = import.meta.env.VITE_API_URL?.trim();
-const localApiBaseUrl = "http://localhost:5000/api";
+const localApiBaseUrl = normalizeApiBaseUrl("http://localhost:5000");
 
 if (!apiBaseUrl && import.meta.env.DEV) {
   console.warn(
@@ -17,8 +29,11 @@ if (!apiBaseUrl && !import.meta.env.DEV) {
 }
 
 const resolvedApiBaseUrl =
-  apiBaseUrl ??
-  (import.meta.env.DEV ? localApiBaseUrl : defaultProductionApiUrl);
+  apiBaseUrl != null
+    ? normalizeApiBaseUrl(apiBaseUrl)
+    : import.meta.env.DEV
+      ? localApiBaseUrl
+      : defaultProductionApiUrl;
 
 export const apiHealthBaseUrl = resolvedApiBaseUrl.replace(/\/api\/?$/, "");
 
