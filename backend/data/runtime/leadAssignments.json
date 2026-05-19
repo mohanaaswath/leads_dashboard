@@ -88,5 +88,239 @@
     "leadId": "lead-service-1-99999999999",
     "providerId": "provider-4",
     "assignedAt": "2026-05-19T10:16:25.585Z"
+  },
+  "lead-service-1-11111111111_provider-1": {
+    "id": "lead-service-1-11111111111_provider-1",
+    "leadId": "lead-service-1-11111111111",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:00.612Z"
+  },
+  "lead-service-1-11111111111_provider-2": {
+    "id": "lead-service-1-11111111111_provider-2",
+    "leadId": "lead-service-1-11111111111",
+    "providerId": "provider-2",
+    "assignedAt": "2026-05-19T10:54:00.612Z"
+  },
+  "lead-service-1-11111111111_provider-3": {
+    "id": "lead-service-1-11111111111_provider-3",
+    "leadId": "lead-service-1-11111111111",
+    "providerId": "provider-3",
+    "assignedAt": "2026-05-19T10:54:00.612Z"
+  },
+  "lead-service-1-555000001_provider-1": {
+    "id": "lead-service-1-555000001_provider-1",
+    "leadId": "lead-service-1-555000001",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.591Z"
+  },
+  "lead-service-1-555000001_provider-4": {
+    "id": "lead-service-1-555000001_provider-4",
+    "leadId": "lead-service-1-555000001",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T10:54:21.591Z"
+  },
+  "lead-service-1-555000001_provider-2": {
+    "id": "lead-service-1-555000001_provider-2",
+    "leadId": "lead-service-1-555000001",
+    "providerId": "provider-2",
+    "assignedAt": "2026-05-19T10:54:21.591Z"
+  },
+  "lead-service-3-555000003_provider-1": {
+    "id": "lead-service-3-555000003_provider-1",
+    "leadId": "lead-service-3-555000003",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.598Z"
+  },
+  "lead-service-3-555000003_provider-4": {
+    "id": "lead-service-3-555000003_provider-4",
+    "leadId": "lead-service-3-555000003",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T10:54:21.598Z"
+  },
+  "lead-service-3-555000003_provider-2": {
+    "id": "lead-service-3-555000003_provider-2",
+    "leadId": "lead-service-3-555000003",
+    "providerId": "provider-2",
+    "assignedAt": "2026-05-19T10:54:21.598Z"
+  },
+  "lead-service-1-555000004_provider-1": {
+    "id": "lead-service-1-555000004_provider-1",
+    "leadId": "lead-service-1-555000004",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.599Z"
+  },
+  "lead-service-1-555000004_provider-3": {
+    "id": "lead-service-1-555000004_provider-3",
+    "leadId": "lead-service-1-555000004",
+    "providerId": "provider-3",
+    "assignedAt": "2026-05-19T10:54:21.599Z"
+  },
+  "lead-service-1-555000004_provider-4": {
+    "id": "lead-service-1-555000004_provider-4",
+    "leadId": "lead-service-1-555000004",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T10:54:21.599Z"
+  },
+  "lead-service-2-555000002_provider-5": {
+    "id": "lead-service-2-555000002_provider-5",
+    "leadId": "lead-service-2-555000002",
+    "providerId": "provider-5",
+    "assignedAt": "2026-05-19T10:54:21.601Z"
+  },
+  "lead-service-2-555000002_provider-7": {
+    "id": "lead-service-2-555000002_provider-7",
+    "leadId": "lead-service-2-555000002",
+    "providerId": "provider-7",
+    "assignedAt": "2026-05-19T10:54:21.601Z"
+  },
+  "lead-service-2-555000002_provider-8": {
+    "id": "lead-service-2-555000002_provider-8",
+    "leadId": "lead-service-2-555000002",
+    "providerId": "provider-8",
+    "assignedAt": "2026-05-19T10:54:21.601Z"
+  },
+  "lead-service-2-555000005_provider-5": {
+    "id": "lead-service-2-555000005_provider-5",
+    "leadId": "lead-service-2-555000005",
+    "providerId": "provider-5",
+    "assignedAt": "2026-05-19T10:54:21.602Z"
+  },
+  "lead-service-2-555000005_provider-6": {
+    "id": "lead-service-2-555000005_provider-6",
+    "leadId": "lead-service-2-555000005",
+    "providerId": "provider-6",
+    "assignedAt": "2026-05-19T10:54:21.602Z"
+  },
+  "lead-service-2-555000005_provider-7": {
+    "id": "lead-service-2-555000005_provider-7",
+    "leadId": "lead-service-2-555000005",
+    "providerId": "provider-7",
+    "assignedAt": "2026-05-19T10:54:21.602Z"
+  },
+  "lead-service-3-555000006_provider-1": {
+    "id": "lead-service-3-555000006_provider-1",
+    "leadId": "lead-service-3-555000006",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.603Z"
+  },
+  "lead-service-3-555000006_provider-4": {
+    "id": "lead-service-3-555000006_provider-4",
+    "leadId": "lead-service-3-555000006",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T10:54:21.603Z"
+  },
+  "lead-service-3-555000006_provider-3": {
+    "id": "lead-service-3-555000006_provider-3",
+    "leadId": "lead-service-3-555000006",
+    "providerId": "provider-3",
+    "assignedAt": "2026-05-19T10:54:21.603Z"
+  },
+  "lead-service-1-555000007_provider-1": {
+    "id": "lead-service-1-555000007_provider-1",
+    "leadId": "lead-service-1-555000007",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.611Z"
+  },
+  "lead-service-1-555000007_provider-2": {
+    "id": "lead-service-1-555000007_provider-2",
+    "leadId": "lead-service-1-555000007",
+    "providerId": "provider-2",
+    "assignedAt": "2026-05-19T10:54:21.611Z"
+  },
+  "lead-service-1-555000007_provider-3": {
+    "id": "lead-service-1-555000007_provider-3",
+    "leadId": "lead-service-1-555000007",
+    "providerId": "provider-3",
+    "assignedAt": "2026-05-19T10:54:21.611Z"
+  },
+  "lead-service-2-555000008_provider-5": {
+    "id": "lead-service-2-555000008_provider-5",
+    "leadId": "lead-service-2-555000008",
+    "providerId": "provider-5",
+    "assignedAt": "2026-05-19T10:54:21.620Z"
+  },
+  "lead-service-2-555000008_provider-8": {
+    "id": "lead-service-2-555000008_provider-8",
+    "leadId": "lead-service-2-555000008",
+    "providerId": "provider-8",
+    "assignedAt": "2026-05-19T10:54:21.620Z"
+  },
+  "lead-service-2-555000008_provider-6": {
+    "id": "lead-service-2-555000008_provider-6",
+    "leadId": "lead-service-2-555000008",
+    "providerId": "provider-6",
+    "assignedAt": "2026-05-19T10:54:21.620Z"
+  },
+  "lead-service-3-555000009_provider-1": {
+    "id": "lead-service-3-555000009_provider-1",
+    "leadId": "lead-service-3-555000009",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.629Z"
+  },
+  "lead-service-3-555000009_provider-4": {
+    "id": "lead-service-3-555000009_provider-4",
+    "leadId": "lead-service-3-555000009",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T10:54:21.629Z"
+  },
+  "lead-service-3-555000009_provider-5": {
+    "id": "lead-service-3-555000009_provider-5",
+    "leadId": "lead-service-3-555000009",
+    "providerId": "provider-5",
+    "assignedAt": "2026-05-19T10:54:21.629Z"
+  },
+  "lead-service-1-555000010_provider-1": {
+    "id": "lead-service-1-555000010_provider-1",
+    "leadId": "lead-service-1-555000010",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T10:54:21.638Z"
+  },
+  "lead-service-1-555000010_provider-4": {
+    "id": "lead-service-1-555000010_provider-4",
+    "leadId": "lead-service-1-555000010",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T10:54:21.638Z"
+  },
+  "lead-service-1-555000010_provider-2": {
+    "id": "lead-service-1-555000010_provider-2",
+    "leadId": "lead-service-1-555000010",
+    "providerId": "provider-2",
+    "assignedAt": "2026-05-19T10:54:21.638Z"
+  },
+  "lead-service-2-6767676767_provider-5": {
+    "id": "lead-service-2-6767676767_provider-5",
+    "leadId": "lead-service-2-6767676767",
+    "providerId": "provider-5",
+    "assignedAt": "2026-05-19T11:05:42.069Z"
+  },
+  "lead-service-2-6767676767_provider-7": {
+    "id": "lead-service-2-6767676767_provider-7",
+    "leadId": "lead-service-2-6767676767",
+    "providerId": "provider-7",
+    "assignedAt": "2026-05-19T11:05:42.069Z"
+  },
+  "lead-service-2-6767676767_provider-8": {
+    "id": "lead-service-2-6767676767_provider-8",
+    "leadId": "lead-service-2-6767676767",
+    "providerId": "provider-8",
+    "assignedAt": "2026-05-19T11:05:42.069Z"
+  },
+  "lead-service-1-444464666885_provider-1": {
+    "id": "lead-service-1-444464666885_provider-1",
+    "leadId": "lead-service-1-444464666885",
+    "providerId": "provider-1",
+    "assignedAt": "2026-05-19T11:06:37.144Z"
+  },
+  "lead-service-1-444464666885_provider-3": {
+    "id": "lead-service-1-444464666885_provider-3",
+    "leadId": "lead-service-1-444464666885",
+    "providerId": "provider-3",
+    "assignedAt": "2026-05-19T11:06:37.144Z"
+  },
+  "lead-service-1-444464666885_provider-4": {
+    "id": "lead-service-1-444464666885_provider-4",
+    "leadId": "lead-service-1-444464666885",
+    "providerId": "provider-4",
+    "assignedAt": "2026-05-19T11:06:37.144Z"
   }
 }

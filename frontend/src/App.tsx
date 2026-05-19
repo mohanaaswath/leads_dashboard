@@ -14,10 +14,7 @@ function App() {
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
         <Routes>
-          <Route
-            path="/"
-            element={<Navigate to="/request-service" replace />}
-          />
+          <Route path="/" element={<Navigate to="/login" replace />} />
           <Route path="/request-service" element={<RequestService />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />

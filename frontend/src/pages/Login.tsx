@@ -24,7 +24,8 @@ export const Login = () => {
         form,
       );
       login(data.user, data.token);
-      navigate("/dashboard");
+      // After successful login, redirect to the public request submission page
+      navigate("/request-service");
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "Invalid credentials";

@@ -1,11 +1,11 @@
 {
   "Service 3": {
     "serviceType": "Service 3",
-    "currentIndex": 0
+    "currentIndex": 3
   },
   "Service 2": {
     "serviceType": "Service 2",
-    "currentIndex": 1
+    "currentIndex": 0
   },
   "Service 1": {
     "serviceType": "Service 1",
