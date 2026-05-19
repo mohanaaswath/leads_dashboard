@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const defaultProductionApiUrl = "https://leads-dashboard-vk47.onrender.com/api";
 const apiBaseUrl = import.meta.env.VITE_API_URL?.trim();
+const defaultProductionApiUrl = "https://your-cloud-run-service-url/api";
 
+const productionApiBaseUrl = apiBaseUrl ?? defaultProductionApiUrl;
 const resolvedApiBaseUrl =
   apiBaseUrl ??
   (import.meta.env.DEV ? "http://localhost:5000/api" : defaultProductionApiUrl);
-
-const productionApiBaseUrl = defaultProductionApiUrl;
 
 if (!apiBaseUrl && import.meta.env.DEV) {
   console.warn(

@@ -265,15 +265,36 @@ The repository includes a GitHub Actions workflow at [.github/workflows/deploy-p
 2. Go to **Settings** > **Pages**.
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
 4. Go to **Settings** > **Secrets and variables** > **Actions** > **Variables**.
-5. Add a variable named `VITE_API_URL` with your deployed backend API URL, for example `https://your-backend.example.com/api`.
+5. Add a variable named `VITE_API_URL` with your Cloud Run backend API URL, for example `https://your-service-xyz-uc.a.run.app/api`.
 6. Push to the `main` branch to trigger the deployment workflow automatically.
+
+If you prefer to keep the Cloud Run URL in a separate variable, you can set `CLOUD_RUN_API_URL` instead and leave `VITE_API_URL` unset.
 
 ### Notes
 
 - The frontend is configured with the GitHub Pages base path `/leads_dashboard/` in [frontend/vite.config.ts](frontend/vite.config.ts).
 - If you rename the repository, update the `base` value in `frontend/vite.config.ts` to match the new repo path.
 - You can also run the deployment manually from the **Actions** tab using the `workflow_dispatch` trigger.
-- The deployed frontend now reads the API URL from the `VITE_API_URL` Actions variable instead of falling back to `localhost`.
+- The deployed frontend reads the API URL from the Actions variable and should point at the Cloud Run service, not the old Render host.
+
+## 🚢 Cloud Run Backend Deployment
+
+The backend includes a Cloud Run deployment workflow at [.github/workflows/deploy-cloud-run.yml](.github/workflows/deploy-cloud-run.yml).
+
+Before using it, configure these GitHub Actions values:
+
+- `GCP_WORKLOAD_IDENTITY_PROVIDER`
+- `GCP_SERVICE_ACCOUNT_EMAIL`
+- `GCP_PROJECT_ID`
+- `JWT_SECRET`
+- `CLOUD_RUN_SERVICE_NAME`
+- `CLOUD_RUN_REGION`
+- `CLOUD_RUN_CORS_ORIGIN`
+- `CLOUD_RUN_RUNTIME_SERVICE_ACCOUNT_EMAIL`
+
+After deployment, copy the Cloud Run service URL into `VITE_API_URL` so the GitHub Pages frontend uses the new stable backend endpoint.
+
+The backend now uses Google application default credentials on Cloud Run, so the runtime service account needs Firestore access, but you do not need to store a Firebase private key in GitHub secrets.
 
 ## 📚 API Documentation
 

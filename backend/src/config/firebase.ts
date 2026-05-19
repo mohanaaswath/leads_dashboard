@@ -12,6 +12,18 @@ const serviceAccountPath =
     "../smart-leads-dashboard-firebase-adminsdk-fbsvc-0db5936430.json",
   );
 
+const hasInlineCredentials =
+  Boolean(process.env.FIREBASE_PROJECT_ID) &&
+  Boolean(process.env.FIREBASE_CLIENT_EMAIL) &&
+  Boolean(process.env.FIREBASE_PRIVATE_KEY);
+
+const isCloudRuntime = Boolean(
+  process.env.K_SERVICE ||
+  process.env.K_REVISION ||
+  process.env.GOOGLE_CLOUD_PROJECT ||
+  process.env.GCP_PROJECT,
+);
+
 const loadServiceAccount = (): admin.ServiceAccount => {
   if (fs.existsSync(serviceAccountPath)) {
     return JSON.parse(
@@ -32,10 +44,32 @@ const loadServiceAccount = (): admin.ServiceAccount => {
   return { projectId, clientEmail, privateKey };
 };
 
-if (!admin.apps.length) {
-  admin.initializeApp({
-    credential: admin.credential.cert(loadServiceAccount()),
-  });
+let db: admin.firestore.Firestore | null = null;
+
+if (fs.existsSync(serviceAccountPath) || hasInlineCredentials) {
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.cert(loadServiceAccount()),
+    });
+  }
+
+  db = admin.firestore();
+} else if (isCloudRuntime) {
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.applicationDefault(),
+      projectId:
+        process.env.FIREBASE_PROJECT_ID ||
+        process.env.GOOGLE_CLOUD_PROJECT ||
+        process.env.GCP_PROJECT,
+    });
+  }
+
+  db = admin.firestore();
+} else {
+  console.warn(
+    "Firebase credentials are not configured. Falling back to local file storage.",
+  );
 }
 
-export const db = admin.firestore();
+export { db };

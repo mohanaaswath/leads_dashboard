@@ -1,0 +1,58 @@
+name: Deploy Backend to Cloud Run
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - "backend/**"
+      - ".github/workflows/deploy-cloud-run.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Write Cloud Run env file
+        run: |
+          cat > backend/.env.cloudrun <<'EOF'
+          NODE_ENV=production
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          CORS_ORIGIN=${{ vars.CLOUD_RUN_CORS_ORIGIN }}
+          FIREBASE_PROJECT_ID=${{ vars.GCP_PROJECT_ID }}
+          EOF
+
+      - name: Deploy backend to Cloud Run
+        run: |
+          gcloud run deploy "${{ vars.CLOUD_RUN_SERVICE_NAME }}" \
+            --source backend \
+            --region "${{ vars.CLOUD_RUN_REGION }}" \
+            --project "${{ vars.GCP_PROJECT_ID }}" \
+            --allow-unauthenticated \
+            --service-account "${{ vars.CLOUD_RUN_RUNTIME_SERVICE_ACCOUNT_EMAIL }}" \
+            --env-vars-file backend/.env.cloudrun
+
+      - name: Print service URL
+        run: |
+          gcloud run services describe "${{ vars.CLOUD_RUN_SERVICE_NAME }}" \
+            --region "${{ vars.CLOUD_RUN_REGION }}" \
+            --project "${{ vars.GCP_PROJECT_ID }}" \
+            --format='value(status.url)'

@@ -23,7 +23,7 @@ jobs:
       run:
         working-directory: frontend
     env:
-      VITE_API_URL: ${{ vars.VITE_API_URL || 'https://leads-dashboard-vk47.onrender.com/api' }}
+      VITE_API_URL: ${{ vars.VITE_API_URL || vars.CLOUD_RUN_API_URL || 'https://your-cloud-run-service-url/api' }}
 
     steps:
       - name: Check out repository
