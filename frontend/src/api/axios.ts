@@ -10,9 +10,6 @@ const normalizeApiBaseUrl = (value: string) => {
   return `${trimmedValue}/api`;
 };
 
-const defaultProductionApiUrl = normalizeApiBaseUrl(
-  "https://leads-dashboard-vk47.onrender.com",
-);
 const apiBaseUrl = import.meta.env.VITE_API_URL?.trim();
 const localApiBaseUrl = normalizeApiBaseUrl("http://localhost:5000");
 
@@ -23,17 +20,13 @@ if (!apiBaseUrl && import.meta.env.DEV) {
 }
 
 if (!apiBaseUrl && !import.meta.env.DEV) {
-  console.warn(
-    `VITE_API_URL is not set. Falling back to ${defaultProductionApiUrl} in production.`,
+  throw new Error(
+    "VITE_API_URL is required in production. Set it to your Cloud Run backend URL.",
   );
 }
 
 const resolvedApiBaseUrl =
-  apiBaseUrl != null
-    ? normalizeApiBaseUrl(apiBaseUrl)
-    : import.meta.env.DEV
-      ? localApiBaseUrl
-      : defaultProductionApiUrl;
+  apiBaseUrl != null ? normalizeApiBaseUrl(apiBaseUrl) : localApiBaseUrl;
 
 export const apiHealthBaseUrl = resolvedApiBaseUrl.replace(/\/api\/?$/, "");
 
